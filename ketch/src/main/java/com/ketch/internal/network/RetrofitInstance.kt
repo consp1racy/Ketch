@@ -2,8 +2,8 @@ package com.ketch.internal.network
 
 import com.ketch.internal.utils.DownloadConst
 import okhttp3.Call
+import okhttp3.HttpUrl
 import okhttp3.OkHttpClient
-import retrofit2.Retrofit
 import java.util.concurrent.TimeUnit
 
 internal object RetrofitInstance {
@@ -22,12 +22,8 @@ internal object RetrofitInstance {
         if (downloadService == null) {
             synchronized(this) {
                 if (downloadService == null) {
-                    downloadService = Retrofit
-                        .Builder()
-                        .baseUrl(DownloadConst.BASE_URL)
-                        .callFactory(callFactory)
-                        .build()
-                        .create(DownloadService::class.java)
+                    val baseUrl = HttpUrl.get(DownloadConst.BASE_URL)
+                    downloadService = OkHttpDownloadService(callFactory, baseUrl)
                 }
             }
         }
