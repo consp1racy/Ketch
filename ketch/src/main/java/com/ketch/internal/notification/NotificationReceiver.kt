@@ -93,13 +93,19 @@ internal class NotificationReceiver : BroadcastReceiver() {
                 intent.extras?.getString(NotificationConst.KEY_NOTIFICATION_CHANNEL_NAME)
                     ?: NotificationConst.DEFAULT_VALUE_NOTIFICATION_CHANNEL_NAME
             val notificationImportance =
-                intent.extras?.getInt(NotificationConst.KEY_NOTIFICATION_CHANNEL_IMPORTANCE)
+                intent.extras?.getInt(
+                    NotificationConst.KEY_NOTIFICATION_CHANNEL_IMPORTANCE,
+                    NotificationConst.DEFAULT_VALUE_NOTIFICATION_CHANNEL_IMPORTANCE
+                )
                     ?: NotificationConst.DEFAULT_VALUE_NOTIFICATION_CHANNEL_IMPORTANCE
             val notificationChannelDescription =
                 intent.extras?.getString(NotificationConst.KEY_NOTIFICATION_CHANNEL_DESCRIPTION)
                     ?: NotificationConst.DEFAULT_VALUE_NOTIFICATION_CHANNEL_DESCRIPTION
             val notificationSmallIcon =
-                intent.extras?.getInt(NotificationConst.KEY_NOTIFICATION_SMALL_ICON)
+                intent.extras?.getInt(
+                    NotificationConst.KEY_NOTIFICATION_SMALL_ICON,
+                    NotificationConst.DEFAULT_VALUE_NOTIFICATION_SMALL_ICON
+                )
                     ?: NotificationConst.DEFAULT_VALUE_NOTIFICATION_SMALL_ICON
             val fileName = intent.extras?.getString(DownloadConst.KEY_FILE_NAME) ?: ""
             val currentProgress = intent.extras?.getInt(DownloadConst.KEY_PROGRESS) ?: 0
